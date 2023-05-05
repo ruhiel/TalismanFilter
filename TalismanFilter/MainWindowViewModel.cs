@@ -38,6 +38,16 @@ namespace TalismanFilter
         public ReactiveProperty<bool> SteadinessExclude { get; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<bool> RapidFireUpExclude { get; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<bool> TuneUpExclude { get; } = new ReactiveProperty<bool>(false);
+
+        public ReactiveProperty<bool> PoisonAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> ParalysisAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> SleepAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> BlastAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> PunishingDrawExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> SluggerExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> StaminaThiefExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> StatusTriggerExclude { get; } = new ReactiveProperty<bool>(true);
+
         public ReactiveProperty<bool> MastersTouchExclude { get; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<bool> HandicraftExclude { get; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<bool> RazorSharpExclude { get; } = new ReactiveProperty<bool>(false);
@@ -154,6 +164,15 @@ namespace TalismanFilter
 
             var skillList = new List<Tuple<string, string>>()
             {
+                Tuple.Create("達人芸", "MastersTouch"),
+                Tuple.Create("匠", "Handicraft"),
+                Tuple.Create("業物", "RazorSharp"),
+                Tuple.Create("剛刃研磨", "ProtectivePolish"),
+                Tuple.Create("心眼", "MindsEye"),
+                Tuple.Create("砥石使用高速化", "SpeedSharpening"),
+                Tuple.Create("研磨術【鋭】", "Grinder_S"),
+                Tuple.Create("刃鱗磨き", "BladescaleHone"),
+
                 Tuple.Create("弾丸節約", "SpareShot"),
                 Tuple.Create("弾道強化", "Ballistics"),
                 Tuple.Create("弓溜め段階解放", "BowChargePlus"),
@@ -168,14 +187,14 @@ namespace TalismanFilter
                 Tuple.Create("速射強化", "RapidFireUp"),
                 Tuple.Create("チューンアップ", "TuneUp"),
 
-                Tuple.Create("達人芸", "MastersTouch"),
-                Tuple.Create("匠", "Handicraft"),
-                Tuple.Create("業物", "RazorSharp"),
-                Tuple.Create("剛刃研磨", "ProtectivePolish"),
-                Tuple.Create("心眼", "MindsEye"),
-                Tuple.Create("砥石使用高速化", "SpeedSharpening"),
-                Tuple.Create("研磨術【鋭】", "Grinder_S"),
-                Tuple.Create("刃鱗磨き", "BladescaleHone"),
+                Tuple.Create("毒属性強化", "PoisonAttack"),
+                Tuple.Create("麻痺属性強化", "ParalysisAttack"),
+                Tuple.Create("睡眠属性強化", "SleepAttack"),
+                Tuple.Create("爆破属性強化", "BlastAttack"),
+                Tuple.Create("抜刀術【力】", "PunishingDraw"),
+                Tuple.Create("ＫＯ術", "Slugger"),
+                Tuple.Create("スタミナ奪取", "StaminaThief"),
+                Tuple.Create("状態異常確定蓄積", "StatusTrigger"),
 
                 Tuple.Create("耳栓", "Earplugs"),
                 Tuple.Create("風圧耐性", "Windproof"),

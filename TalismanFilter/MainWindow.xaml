@@ -61,6 +61,18 @@
                             <CheckBox Content="チューンアップ" IsChecked="{Binding TuneUpExclude.Value}"/>
                         </WrapPanel>
                     </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" Header="状態異常強化">
+                        <WrapPanel>
+                            <CheckBox Content="毒属性強化" IsChecked="{Binding PoisonAttackExclude.Value}"/>
+                            <CheckBox Content="麻痺属性強化" IsChecked="{Binding ParalysisAttackExclude.Value}"/>
+                            <CheckBox Content="睡眠属性強化" IsChecked="{Binding SleepAttackExclude.Value}"/>
+                            <CheckBox Content="爆破属性強化" IsChecked="{Binding BlastAttackExclude.Value}"/>
+                            <CheckBox Content="抜刀術【力】" IsChecked="{Binding PunishingDrawExclude.Value}"/>
+                            <CheckBox Content="ＫＯ術" IsChecked="{Binding SluggerExclude.Value}"/>
+                            <CheckBox Content="スタミナ奪取" IsChecked="{Binding StaminaThiefExclude.Value}"/>
+                            <CheckBox Content="状態異常確定蓄積" IsChecked="{Binding StatusTriggerExclude.Value}"/>
+                        </WrapPanel>
+                    </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" Header="状態異常耐性">
                         <WrapPanel>
                             <CheckBox Content="耳栓" IsChecked="{Binding EarplugsExclude.Value}"/>
@@ -111,9 +123,9 @@
         </ScrollViewer>
         <DataGrid Grid.Row="2" ItemsSource="{Binding FilterLineInfoList}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="スキル１" Width="200" Binding="{Binding Skill1}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スキル１" Width="160" Binding="{Binding Skill1}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="スキル１レベル" Width="100" Binding="{Binding Skill1Level}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="スキル２" Width="200" Binding="{Binding Skill2}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スキル２" Width="160" Binding="{Binding Skill2}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="スキル２レベル" Width="100" Binding="{Binding Skill2Level}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="スロット１" Width="80" Binding="{Binding Slot1}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="スロット２" Width="80" Binding="{Binding Slot2}" IsReadOnly="True"/>
