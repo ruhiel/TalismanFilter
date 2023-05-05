@@ -1,0 +1,127 @@
+﻿<mah:MetroWindow x:Class="TalismanFilter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TalismanFilter"
+        mc:Ignorable="d"
+        Title="TalismanFilter" Height="900" Width="750"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+        SaveWindowPosition="True"
+        BorderThickness="1"
+        WindowStartupLocation="CenterScreen"
+        Dialog:DialogParticipation.Register="{Binding}">
+    <mah:MetroWindow.DataContext>
+        <local:MainWindowViewModel>
+            <local:MainWindowViewModel.MahAppsDialogCoordinator>
+                <Dialog:DialogCoordinator/>
+            </local:MainWindowViewModel.MahAppsDialogCoordinator>
+        </local:MainWindowViewModel>
+    </mah:MetroWindow.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="ファイルを開く" Margin="5" Command="{Binding FileOpenCommand}"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <Expander ExpandDirection="Down" IsExpanded="True" Header="除外スキル一覧">
+                <StackPanel Orientation="Vertical">
+                    <Expander ExpandDirection="Down" IsExpanded="False" Header="切れ味">
+                        <WrapPanel>
+                            <CheckBox Content="達人芸" IsChecked="{Binding MastersTouchExclude.Value}"/>
+                            <CheckBox Content="匠" IsChecked="{Binding HandicraftExclude.Value}"/>
+                            <CheckBox Content="業物" IsChecked="{Binding RazorSharpExclude.Value}"/>
+                            <CheckBox Content="剛刃研磨" IsChecked="{Binding ProtectivePolishExclude.Value}"/>
+                            <CheckBox Content="心眼" IsChecked="{Binding MindsEyeExclude.Value}"/>
+                            <CheckBox Content="砥石使用高速化" IsChecked="{Binding SpeedSharpeningExclude.Value}"/>
+                            <CheckBox Content="研磨術【鋭】" IsChecked="{Binding Grinder_SExclude.Value}"/>
+                            <CheckBox Content="刃鱗磨き" IsChecked="{Binding BladescaleHoneExclude.Value}"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" Header="ガンナー専用">
+                        <WrapPanel>
+                            <CheckBox Content="弾丸節約" IsChecked="{Binding SpareShotExclude.Value}"/>
+                            <CheckBox Content="弾道強化" IsChecked="{Binding BallisticsExclude.Value}"/>
+                            <CheckBox Content="弓溜め段階解放" IsChecked="{Binding BowChargePlusExclude.Value}"/>
+                            <CheckBox Content="特殊射撃強化" IsChecked="{Binding SpecialAmmoBoostExclude.Value}"/>
+                            <CheckBox Content="通常弾・連射矢強化" IsChecked="{Binding NormalRapidUpExclude.Value}"/>
+                            <CheckBox Content="貫通弾・貫通矢強化" IsChecked="{Binding PierceUpExclude.Value}"/>
+                            <CheckBox Content="散弾・拡散矢強化" IsChecked="{Binding SpreadUpExclude.Value}"/>
+                            <CheckBox Content="装填拡張" IsChecked="{Binding AmmoUpExclude.Value}"/>
+                            <CheckBox Content="装填速度" IsChecked="{Binding ReloadSpeedExclude.Value}"/>
+                            <CheckBox Content="反動軽減" IsChecked="{Binding RecoilDownExclude.Value}"/>
+                            <CheckBox Content="ブレ抑制" IsChecked="{Binding SteadinessExclude.Value}"/>
+                            <CheckBox Content="速射強化" IsChecked="{Binding RapidFireUpExclude.Value}"/>
+                            <CheckBox Content="チューンアップ" IsChecked="{Binding TuneUpExclude.Value}"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" Header="状態異常耐性">
+                        <WrapPanel>
+                            <CheckBox Content="耳栓" IsChecked="{Binding EarplugsExclude.Value}"/>
+                            <CheckBox Content="風圧耐性" IsChecked="{Binding WindproofExclude.Value}"/>
+                            <CheckBox Content="耐震" IsChecked="{Binding TremorResistanceExclude.Value}"/>
+                            <CheckBox Content="泡沫の舞" IsChecked="{Binding BubblyDanceExclude.Value}"/>
+                            <CheckBox Content="毒耐性" IsChecked="{Binding PoisonResistanceExclude.Value}"/>
+                            <CheckBox Content="麻痺耐性" IsChecked="{Binding ParalysisResistanceExclude.Value}"/>
+                            <CheckBox Content="睡眠耐性" IsChecked="{Binding SleepResistanceExclude.Value}"/>
+                            <CheckBox Content="気絶耐性" IsChecked="{Binding StunResistanceExclude.Value}"/>
+                            <CheckBox Content="泥雪耐性" IsChecked="{Binding MuckResistanceExclude.Value}"/>
+                            <CheckBox Content="爆破やられ耐性" IsChecked="{Binding BlastResistanceExclude.Value}"/>
+                            <CheckBox Content="ひるみ軽減" IsChecked="{Binding FlinchFreeExclude.Value}"/>
+                            <CheckBox Content="顕如盤石" IsChecked="{Binding DefianceExclude.Value}"/>
+                            <CheckBox Content="剛心" IsChecked="{Binding IntrepidHeartExclude.Value}"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" Header="属性耐性">
+                        <WrapPanel>
+                            <CheckBox Content="火耐性" IsChecked="{Binding FireResistanceExclude.Value}"/>
+                            <CheckBox Content="水耐性" IsChecked="{Binding WaterResistanceExclude.Value}"/>
+                            <CheckBox Content="氷耐性" IsChecked="{Binding IceResistanceExclude.Value}"/>
+                            <CheckBox Content="雷耐性" IsChecked="{Binding ThunderResistanceExclude.Value}"/>
+                            <CheckBox Content="龍耐性" IsChecked="{Binding DragonResistanceExclude.Value}"/>
+                            <CheckBox Content="属性やられ耐性" IsChecked="{Binding BlightResistanceExclude.Value}"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" Header="アイテム使用系">
+                        <WrapPanel>
+                            <CheckBox Content="早食い" IsChecked="{Binding SpeedEatingExclude.Value}"/>
+                            <CheckBox Content="砥石使用高速化" IsChecked="{Binding SpeedSharpeningExclude.Value}"/>
+                            <CheckBox Content="ボマー" IsChecked="{Binding BombardierExclude.Value}"/>
+                            <CheckBox Content="キノコ大好き" IsChecked="{Binding MushroomancerExclude.Value}"/>
+                            <CheckBox Content="アイテム使用強化" IsChecked="{Binding ItemProlongerExclude.Value}"/>
+                            <CheckBox Content="広域化" IsChecked="{Binding WideRangeExclude.Value}"/>
+                            <CheckBox Content="満足感" IsChecked="{Binding FreeMealExclude.Value}"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" Header="探索">
+                        <WrapPanel>
+                            <CheckBox Content="植生学" IsChecked="{Binding BotanistExclude.Value}"/>
+                            <CheckBox Content="地質学" IsChecked="{Binding GeologistExclude.Value}"/>
+                            <CheckBox Content="腹減り耐性" IsChecked="{Binding HungerResistanceExclude.Value}"/>
+                        </WrapPanel>
+                    </Expander>
+                </StackPanel>
+            </Expander>
+        </ScrollViewer>
+        <DataGrid Grid.Row="2" ItemsSource="{Binding FilterLineInfoList}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="スキル１" Width="200" Binding="{Binding Skill1}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スキル１レベル" Width="100" Binding="{Binding Skill1Level}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スキル２" Width="200" Binding="{Binding Skill2}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スキル２レベル" Width="100" Binding="{Binding Skill2Level}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スロット１" Width="80" Binding="{Binding Slot1}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スロット２" Width="80" Binding="{Binding Slot2}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スロット３" Width="80" Binding="{Binding Slot3}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Content="出力" Margin="5" Command="{Binding OutputCommand}"/>
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>
