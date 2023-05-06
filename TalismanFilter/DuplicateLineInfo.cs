@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TalismanFilter
 {
-    public class LineInfo : BindableBase
+    public class DuplicateLineInfo : BindableBase
     {
         private string _Skill1 = string.Empty;
         public string Skill1
@@ -67,7 +67,14 @@ namespace TalismanFilter
             set { SetProperty(ref _Slot3, value); }
         }
 
-        public LineInfo(string skill1, string skill1Level, string skill2, string skill2Level, string slot1, string slot2, string slot3)
+        private int _Num = 0;
+        public int Num
+        {
+            get { return _Num; }
+            set { SetProperty(ref _Num, value); }
+        }
+
+        public DuplicateLineInfo(string skill1, string skill1Level, string skill2, string skill2Level, string slot1, string slot2, string slot3, int num)
         {
             _Skill1 = skill1;
             _Skill1Level = int.Parse(skill1Level);
@@ -76,11 +83,7 @@ namespace TalismanFilter
             _Slot1 = int.Parse(slot1);
             _Slot2 = int.Parse(slot2);
             _Slot3 = int.Parse(slot3);
-        }
-
-        public string Key
-        {
-            get { return Skill1WithLevel + Skill2WithLevel + Slot1 + Slot2 + Slot3; }
+            _Num = num;
         }
     }
 }

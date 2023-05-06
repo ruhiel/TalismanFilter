@@ -20,6 +20,7 @@ namespace TalismanFilter
         public ObservableCollection<LineInfo> LineInfoList { get; } = new ObservableCollection<LineInfo>();
 
         public ObservableCollection<LineInfo> FilterLineInfoList { get; } = new ObservableCollection<LineInfo>();
+        public ObservableCollection<DuplicateLineInfo> DuplicateLineInfoList { get; } = new ObservableCollection<DuplicateLineInfo>();
         #region チェックボックス
 
         #endregion
@@ -38,6 +39,20 @@ namespace TalismanFilter
         public ReactiveProperty<bool> SteadinessExclude { get; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<bool> RapidFireUpExclude { get; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<bool> TuneUpExclude { get; } = new ReactiveProperty<bool>(false);
+
+        public ReactiveProperty<bool> FireAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> WaterAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> IceAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> ThunderAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> DragonAttackExclude { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> CriticalElementExclude { get; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<bool> ElementExploitExclude { get; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<bool> KushalaBlessingExclude { get; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<bool> TeostraBlessingExclude { get; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<bool> CoalescenceExclude { get; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<bool> ChargeMasterExclude { get; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<bool> BurstExclude { get; } = new ReactiveProperty<bool>(false);
+
 
         public ReactiveProperty<bool> PoisonAttackExclude { get; } = new ReactiveProperty<bool>(true);
         public ReactiveProperty<bool> ParalysisAttackExclude { get; } = new ReactiveProperty<bool>(true);
@@ -107,6 +122,7 @@ namespace TalismanFilter
 
                     if (cofd.ShowDialog() == CommonFileDialogResult.Ok)
                     {
+                        LineInfoList.Clear();
 
                         Properties.Settings.Default.DefaultFilePath = cofd.FileName;
                         Properties.Settings.Default.Save();
@@ -130,6 +146,19 @@ namespace TalismanFilter
                         }
 
                         Filter();
+
+                        DuplicateLineInfoList.Clear();
+
+                        var groupBy = LineInfoList.GroupBy(x => x.Key);
+                        foreach (var group in groupBy)
+                        {
+                            if(group.Count() > 1)
+                            {
+                                var item = group.First();
+                                var duplicateLineInfo = new DuplicateLineInfo(item.Skill1, item.Skill1Level.ToString(), item.Skill2, item.Skill2Level.ToString(), item.Slot1.ToString(), item.Slot2.ToString(), item.Slot3.ToString(), group.Count());
+                                DuplicateLineInfoList.Add(duplicateLineInfo);
+                            }
+                        }
                     }
                 }
             });
@@ -186,6 +215,19 @@ namespace TalismanFilter
                 Tuple.Create("ブレ抑制", "Steadiness"),
                 Tuple.Create("速射強化", "RapidFireUp"),
                 Tuple.Create("チューンアップ", "TuneUp"),
+
+                Tuple.Create("火属性攻撃強化", "FireAttack"),
+                Tuple.Create("水属性攻撃強化", "WaterAttack"),
+                Tuple.Create("氷属性攻撃強化", "IceAttack"),
+                Tuple.Create("雷属性攻撃強化", "ThunderAttack"),
+                Tuple.Create("龍属性攻撃強化", "DragonAttack"),
+                Tuple.Create("会心撃【属性】", "CriticalElement"),
+                Tuple.Create("弱点特効【属性】", "ElementExploit"),
+                Tuple.Create("鋼殻の恩恵", "KushalaBlessing"),
+                Tuple.Create("炎鱗の恩恵", "TeostraBlessing"),
+                Tuple.Create("災禍転福", "Coalescence"),
+                Tuple.Create("チャージマスター", "ChargeMaster"),
+                Tuple.Create("連撃", "Burst"),
 
                 Tuple.Create("毒属性強化", "PoisonAttack"),
                 Tuple.Create("麻痺属性強化", "ParalysisAttack"),

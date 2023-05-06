@@ -23,7 +23,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="4*"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="9*"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
@@ -59,6 +62,22 @@
                             <CheckBox Content="ブレ抑制" IsChecked="{Binding SteadinessExclude.Value}"/>
                             <CheckBox Content="速射強化" IsChecked="{Binding RapidFireUpExclude.Value}"/>
                             <CheckBox Content="チューンアップ" IsChecked="{Binding TuneUpExclude.Value}"/>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" Header="属性強化">
+                        <WrapPanel>
+                            <CheckBox Content="火属性攻撃強化" IsChecked="{Binding FireAttackExclude.Value}"/>
+                            <CheckBox Content="水属性攻撃強化" IsChecked="{Binding WaterAttackExclude.Value}"/>
+                            <CheckBox Content="氷属性攻撃強化" IsChecked="{Binding IceAttackExclude.Value}"/>
+                            <CheckBox Content="雷属性攻撃強化" IsChecked="{Binding ThunderAttackExclude.Value}"/>
+                            <CheckBox Content="龍属性攻撃強化" IsChecked="{Binding DragonAttackExclude.Value}"/>
+                            <CheckBox Content="会心撃【属性】" IsChecked="{Binding CriticalElementExclude.Value}"/>
+                            <CheckBox Content="弱点特効【属性】" IsChecked="{Binding ElementExploitExclude.Value}"/>
+                            <CheckBox Content="鋼殻の恩恵" IsChecked="{Binding KushalaBlessingExclude.Value}"/>
+                            <CheckBox Content="炎鱗の恩恵" IsChecked="{Binding TeostraBlessingExclude.Value}"/>
+                            <CheckBox Content="災禍転福" IsChecked="{Binding CoalescenceExclude.Value}"/>
+                            <CheckBox Content="チャージマスター" IsChecked="{Binding ChargeMasterExclude.Value}"/>
+                            <CheckBox Content="連撃" IsChecked="{Binding BurstExclude.Value}"/>
                         </WrapPanel>
                     </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" Header="状態異常強化">
@@ -121,18 +140,28 @@
                 </StackPanel>
             </Expander>
         </ScrollViewer>
-        <DataGrid Grid.Row="2" ItemsSource="{Binding FilterLineInfoList}" AutoGenerateColumns="False" CanUserAddRows="False">
+        <GridSplitter Grid.Row="2"/>
+        <DataGrid Grid.Row="3" ItemsSource="{Binding FilterLineInfoList}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="スキル１" Width="160" Binding="{Binding Skill1}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="スキル１レベル" Width="100" Binding="{Binding Skill1Level}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="スキル２" Width="160" Binding="{Binding Skill2}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="スキル２レベル" Width="100" Binding="{Binding Skill2Level}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スキル１" Width="160" Binding="{Binding Skill1WithLevel}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スキル２" Width="160" Binding="{Binding Skill2WithLevel}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="スロット１" Width="80" Binding="{Binding Slot1}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="スロット２" Width="80" Binding="{Binding Slot2}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="スロット３" Width="80" Binding="{Binding Slot3}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="3" Orientation="Horizontal">
+        <GridSplitter Grid.Row="4"/>
+        <DataGrid Grid.Row="5" ItemsSource="{Binding DuplicateLineInfoList}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="スキル１" Width="160" Binding="{Binding Skill1WithLevel}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スキル２" Width="160" Binding="{Binding Skill2WithLevel}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スロット１" Width="80" Binding="{Binding Slot1}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スロット２" Width="80" Binding="{Binding Slot2}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="スロット３" Width="80" Binding="{Binding Slot3}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="個数" Width="80" Binding="{Binding Num}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="6" Orientation="Horizontal">
             <Button Content="出力" Margin="5" Command="{Binding OutputCommand}"/>
         </StackPanel>
     </Grid>
